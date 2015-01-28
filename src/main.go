@@ -66,7 +66,6 @@ func main() {
 			panic(err)
 		}
 	}
-	fmt.Println(env)
 	execErr := syscall.Exec(bin, args, env)
 	if execErr != nil {
 		panic(execErr)

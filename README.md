@@ -12,6 +12,9 @@ Run your application with habitat app_name for a local env, habitat -e for etcd 
 To eliminate the local env add the -n option. To access a daemon on a remote server use -p host:port
 Your keys need to be added in a way where the root name is the appname.
 
+## Build
+	$ cd src ; make
+
 ## Options
 	- -e etcd <etcd addr:port>
 	- -c consul <consul addr:port>
@@ -21,7 +24,7 @@ Your keys need to be added in a way where the root name is the appname.
 
 
 
-## Examples
+## Examples (using env to show the new env vars)
 	- etcd
 		$ curl http://127.0.0.1:4001/v1/keys/app/db -d value="newdb"
 		$ curl http://127.0.0.1:4001/v1/keys/app/cache -d value="newcache"
