@@ -1,0 +1,6 @@
+~*
+*.db
+habitat
+src.test
+.vagrant
+
