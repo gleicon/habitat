@@ -21,27 +21,33 @@ Your keys need to be added in a way where the root name is the appname.
 	- -r redis <redis addr:port>
 	- -n do not add local env
 	- -p host:port for remote servers
-
+	- -k key prefix. If not set the app name will be used as root or prefix depending on the database
 
 
 ## Examples (using env to show the new env vars)
 	- etcd
-		$ curl http://127.0.0.1:4001/v1/keys/app/db -d value="newdb"
-		$ curl http://127.0.0.1:4001/v1/keys/app/cache -d value="newcache"
-		$ curl http://127.0.0.1:4001/v1/keys/app/queue -d value="datqueue"
+		$ curl http://127.0.0.1:4001/v1/keys/env/db -d value="newdb"
+		$ curl http://127.0.0.1:4001/v1/keys/env/cache -d value="newcache"
+		$ curl http://127.0.0.1:4001/v1/keys/env/queue -d value="datqueue"
 		$ habitat -e 127.0.0.1:4001 env
 
 	- redis
-		$ redis-cli hset app db newdb
-		$ redis-cli hset app cache newcache
-		$ redis-cli hset app queue newqueue
+		$ redis-cli hset env db newdb
+		$ redis-cli hset env cache newcache
+		$ redis-cli hset env queue newqueue
 		$ habitat -r 127.0.0.1:6379 env
 
 	- consul
-		$ curl -X PUT -d 'newdb' http://localhost:8500/v1/kv/app/db
-		$ curl -X PUT -d 'newcache' http://localhost:8500/v1/kv/app/cache
-		$ curl -X PUT -d 'newqueue' http://localhost:8500/v1/kv/app/queue
+		$ curl -X PUT -d 'newdb' http://localhost:8500/v1/kv/env/db
+		$ curl -X PUT -d 'newcache' http://localhost:8500/v1/kv/env/cache
+		$ curl -X PUT -d 'newqueue' http://localhost:8500/v1/kv/env/queue
 		$ habitat -c 127.0.0.1:8500 env
+
+	- consul with a different app name
+		$ curl -X PUT -d 'newdb' http://localhost:8500/v1/kv/newapp/db
+		$ curl -X PUT -d 'newcache' http://localhost:8500/v1/kv/newapp/cache
+		$ curl -X PUT -d 'newqueue' http://localhost:8500/v1/kv/newapp/queue
+		$ habitat -k newapp -c 127.0.0.1:8500 env
 
 	You can mix data coming from all sources too.
 
