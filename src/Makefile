@@ -3,10 +3,13 @@ include Makefile.defs
 all: deps server
 
 deps:
-	go get -u -v
+	go get -v
 
 server:
 	go build -v -o $(NAME) -ldflags "-X main.VERSION $(VERSION)"
+
+update:
+	go get -u -v
 
 clean:
 	rm -f $(NAME)
