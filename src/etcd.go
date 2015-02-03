@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/coreos/go-etcd/etcd"
 	"strings"
 )
@@ -18,10 +17,10 @@ func readFromEtcd(addr string, env *[]string, appname string) error {
 	for _, n := range res.Node.Nodes {
 		key := strings.Split(n.Key, "/")
 		k, v := strings.ToUpper(key[len(key)-1]), n.Value
-		ev := fmt.Sprintf("%s=%s", k, v)
-		*env = append(*env, ev)
+		addToEnv(env, k, v)
 	}
 
-	*env = append(*env, "etcd=true")
+	addToEnv(env, "etcd", "true")
+
 	return nil
 }

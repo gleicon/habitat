@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/fiorix/go-redis/redis"
 	"strings"
 )
@@ -15,9 +14,8 @@ func readFromRedis(addr string, env *[]string, appname string) error {
 	}
 	for k, v := range keys {
 		key, value := strings.ToUpper(k), v
-		ev := fmt.Sprintf("%s=%s", key, value)
-		*env = append(*env, ev)
+		addToEnv(env, key, value)
 	}
-	*env = append(*env, "redis=true")
+	addToEnv(env, "redis", "true")
 	return nil
 }
