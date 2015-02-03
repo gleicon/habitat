@@ -8,6 +8,9 @@ deps:
 server:
 	go build -v -o $(NAME) -ldflags "-X main.VERSION $(VERSION)"
 
+update:
+	go get -u -v
+
 clean:
 	rm -f $(NAME)
 

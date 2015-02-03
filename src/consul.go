@@ -19,9 +19,8 @@ func readFromConsul(addr string, env *[]string, appname string) error {
 	for _, kp := range keys {
 		kk := strings.Split(kp.Key, "/")
 		key, value := strings.ToUpper(kk[len(kk)-1]), kp.Value
-		ev := fmt.Sprintf("%s=%s", key, value)
-		*env = append(*env, ev)
+		addToEnv(env, key, fmt.Sprintf("%s", value))
 	}
-	*env = append(*env, "consul=true")
+	addToEnv(env, "consul", "true")
 	return nil
 }
