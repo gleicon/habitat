@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/coreos/go-etcd/etcd"
 	"strings"
+
+	"github.com/coreos/go-etcd/etcd"
 )
 
 func readFromEtcd(addr string, env *[]string, appname string) error {

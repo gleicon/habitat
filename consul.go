@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/hashicorp/consul/api"
 	"strings"
+
+	"github.com/hashicorp/consul/api"
 )
 
 func readFromConsul(addr string, env *[]string, appname string) error {

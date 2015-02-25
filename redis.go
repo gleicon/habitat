@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/fiorix/go-redis/redis"
 	"strings"
+
+	"github.com/fiorix/go-redis/redis"
 )
 
 func readFromRedis(addr string, env *[]string, appname string) error {
