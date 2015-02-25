@@ -13,7 +13,10 @@ To eliminate the local env add the -n option. To access a daemon on a remote ser
 Your keys need to be added in a way where the root name is the appname.
 
 ## Build
-	$ cd src ; make
+	$ go get github.com/gleicon/habitat and it will be available at $GOPATH/bin
+
+	If you want to clone the repo, just run
+	$ go build
 
 ## Options
 	- -e etcd <etcd addr:port>
