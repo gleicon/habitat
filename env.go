@@ -10,7 +10,7 @@ import (
 
 func addToEnv(env *[]string, key string, value string) error {
 	ev := fmt.Sprintf("%s=%s", key, value)
-	fmt.Println("adding %s to env", ev)
+	fmt.Printf("adding %s to env\n", ev)
 	*env = append(*env, ev)
 	return nil
 }
