@@ -8,7 +8,7 @@ import (
 
 func readFromRedis(addr string, env *[]string, appname string) error {
 	rc := redis.New(addr)
-	defer rc.CloseAll()
+	defer rc.Close()
 	keys, err := rc.HGetAll(appname)
 	if err != nil {
 		return err
